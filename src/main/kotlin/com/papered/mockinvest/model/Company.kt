@@ -9,5 +9,5 @@ data class Company(
         val _id: String,
         val companyName: String,
         val ticker: String,
-        val value: HashMap<String, Value>
+        val value: HashMap<Long, Value>
 )
