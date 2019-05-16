@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/company")
 class CompanyController(val companyRepository: CompanyRepository) {
 
-    @RequestMapping("/{ticker}", method = [RequestMethod.GET])
+    @GetMapping("/{ticker}")
     fun getCompanyWithId(@PathVariable("ticker") ticker: String) = companyRepository.findByTicker(ticker)
 
 
-    @RequestMapping("/{ticker}/{date}", method = [RequestMethod.GET])
+    @GetMapping("/{ticker}/{date}")
     fun getStockValue(@PathVariable("ticker") ticker: String, @PathVariable("date") date: Long): Value? =
             companyRepository.findByTicker(ticker).value[date]
 
-    @RequestMapping("/{ticker}/date", method = [RequestMethod.GET])
+    @GetMapping("/{ticker}/date")
     fun getStockWithDate(@PathVariable("ticker") ticker: String, @RequestParam("startdate") startDate: Long, @RequestParam("enddate") endDate: Long): Map<Long, Value> {
         val company = companyRepository.findByTicker(ticker)
         return company.value.filter {
