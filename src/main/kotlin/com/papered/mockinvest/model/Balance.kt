@@ -1,10 +1,13 @@
 package com.papered.mockinvest.model
 
 import org.springframework.data.mongodb.core.mapping.Document
+import javax.persistence.GeneratedValue
 
 @Document("balance")
 data class Balance(
-        val money: Long,
-        val orders: ArrayList<Order>
+        @GeneratedValue
+        val _id: String,
+        var money: Int,
+        val orders: ArrayList<OrderHistory>
 )
 
